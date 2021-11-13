@@ -8,6 +8,7 @@ module.exports = {
         houm:{
           logo: '#ff5000',
           red: '#FF452B',
+          redHover: '#b2301e',
           salmon: '#ffdbd0',
           beige: '#f7f0f0',
           white: '#f7eff0',
@@ -23,5 +24,8 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/aspect-ratio'),
+    require('@tailwindcss/typography'),
+  ],
 }
