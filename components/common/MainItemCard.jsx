@@ -22,23 +22,21 @@ export const MainItemCard = ({image,title,score,platform,release,url}) => {
     ))
     return (
         <Link href={`/games/${url}`} >
-            <a className="bg-houm-beige hover:bg-houm-salmon rounded-xl overflow-hidden flex flex-col relative text-houm-black transition duration-300 border-[1px]
-        border-houm-gayBorder hover:border-houm-red group hover:scale-[1.02] shadow-lg">
+            <a className="bg-houm-beige hover:bg-houm-salmon rounded-xl overflow-hidden flex flex-col relative text-houm-black transition duration-300 border-[1px]border-houm-gayBorder hover:border-houm-red group hover:scale-[1.02] shadow-lg">
                 <div className="w-full overflow-hidden">
                     <Image src={image} width="1920" height="1080"  alt="ffxiv" className="object-cover absolute hover:scale-110 transition duration-300"/>  
                 </div>
-                {score&&<span className=" m-2 absolute top-0 right-0 text-houm-red bg-houm-white group-hover:bg-houm-salmon group-hover:border-houm-red border-4 rounded-full
-                flex items-center justify-center transition duration-300 pt-1 h-10 w-10">
+                {score&&<span className="m-2 absolute top-0 right-0 text-houm-red bg-houm-white group-hover:bg-houm-salmon group-hover:border-houm-red border-4 rounded-full flex items-center justify-center transition duration-300 pt-1 h-10 w-10">
                     {score}
                 </span>}
                 <div className="flex flex-col justify-between">
-                    <span className=" my-2 text-center text-houm-black font-bold text-lg">
+                    <span className="my-2 text-center text-houm-black font-bold text-lg">
                         {title}
                     </span>
                     <div className="flex flex-row overflow-hidden items-center justify-evenly">
                         {plats}
                     </div>
-                    <span className=" my-2 text-center text-gray-500">
+                    <span className="my-2 text-center text-gray-500">
                         Release date: {release}
                     </span>
                 </div>
