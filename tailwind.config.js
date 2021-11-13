@@ -16,6 +16,9 @@ module.exports = {
         }
       },
     },
+    backgroundImage: {
+      'bgBubles': "url('/Fondo.svg')",
+     }
   },
   variants: {
     extend: {},
