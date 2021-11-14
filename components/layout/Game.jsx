@@ -1,32 +1,40 @@
+import { useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
-import apiCall from '../../functions'
-import { baseUrl, apiKey } from '../../constants'
 import { GameDetails } from './GameDetails'
+
+import useGameDetailStore from '../../Zustand/stores/gameDetail'
+import shallow from 'zustand/shallow'
+
+import { Error } from '../common/Error'
+import { Spinner } from '../common/Spinner'
 export const Game = () => {
     const {query:{id}} = useRouter()
-    const [game, setGame]=useState(null)
-    const [screenshots, setScreenshots]=useState(null)
+    const {game, screenshots, getGameDetail, isLoading, hasError} = useGameDetailStore(state => ({
+        game:state.game,
+        screenshots:state.screenshots,
+        getGameDetail:state.getGameDetail,
+        isLoading:state.isLoading, 
+        hasError:state.hasError
+    }),shallow)
 
     useEffect(()=>{
-        const getSources = async() => {
-            const resultGame = await apiCall({url:`${baseUrl}games/${id}?key=${apiKey}`})
-            const resultScreenshots = await apiCall({url:`${baseUrl}games/${id}/screenshots?key=${apiKey}`})
-            setGame(resultGame) 
-            setScreenshots(resultScreenshots) 
-        }
         if(id!=undefined){
-            getSources()
+            getGameDetail(id).catch(null)
         } 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[id])
 
     if(!game){return null}
+    if(!screenshots){return null}
     return (
         <>
             {
-                game.name!=null ?
-                <GameDetails data={game} screenshots={screenshots}/> :
-                <span>Cargando...</span>
+                !isLoading ?
+                <>
+                    <GameDetails data={game} screenshots={screenshots}/>
+                    {hasError&&<Error/>}
+                </> :
+                <Spinner/>
             }
         </>
     )

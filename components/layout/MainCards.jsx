@@ -1,30 +1,41 @@
-import { useEffect, useState } from "react"
-import { MainItemCard } from "../common/MainItemCard"
-import apiCall from "../../functions"
-import { baseUrl, apiKey } from "../../constants"
+import { useEffect } from 'react'
+import { MainItemCard } from '../common/MainItemCard'
+import { Spinner } from '../common/Spinner'
+import { Error } from '../common/Error'
+
+import useCardsStore from '../../Zustand/stores/cards'
+import shallow from 'zustand/shallow'
+
 export const MainCards = () => {
-    const [games, setGames]=useState([])
+    const {cards, getMainCards, isLoading, hasError} = useCardsStore(state => ({
+        cards:state.cards, 
+        getMainCards:state.getMainCards, 
+        isLoading:state.isLoading, 
+        hasError:state.hasError
+    }),shallow)
+
     useEffect(()=>{
-        const getGames = async() => {
-            //const result = await apiCall({url:`${baseUrl}games?developers=nintendo&page=1&page_size=20&filter=true&comments=true&key=${apiKey}`})
-            const result = await apiCall({url:`${baseUrl}games?key=${apiKey}`})
-            setGames(result.results)
-        }
-        getGames(); 
+        getMainCards().catch(null)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 m-2">
-            {games.map((game)=>(
-                <MainItemCard 
-                    key={game.id} 
-                    image={game.background_image} 
-                    title={game.name} 
-                    score={game.metacritic} 
-                    platform={game.parent_platforms} 
-                    release={game.released} 
-                    url={game.slug}
-                />
-            ))}
-        </div>
+        <>
+            {!isLoading?
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 m-2">
+                {hasError && <Error/>}
+                {cards.map((game)=>(
+                    <MainItemCard 
+                        key={game.id} 
+                        image={game.background_image} 
+                        title={game.name} 
+                        score={game.metacritic} 
+                        platform={game.parent_platforms} 
+                        release={game.released} 
+                        url={game.slug}
+                    />
+                ))}
+            </div>:
+            <Spinner/>}
+        </>
     )
 }
