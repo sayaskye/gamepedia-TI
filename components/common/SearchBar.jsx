@@ -34,9 +34,9 @@ export const SearchBar = () => {
     return (
         <>
             <form className="pt-10 w-full flex flex-col  justify-center" onSubmit={ handleSubmitText }>
-                <span className="text-center text-houm-logo mb-2">Search with text</span>
+                <span className="text-center text-houm-black font-bold text-xl mb-2">Search with text</span>
                 <input 
-                    className="border-houm-red/50 border-2 rounded-lg p-2 bg-houm-salmon text-houm-black w-[80%] mx-auto focus:outline-none"
+                    className="border-houm-red/50 border-2 rounded-lg p-2 bg-houm-beige text-houm-black w-[80%] mx-auto focus:outline-none"
                     type="text" 
                     name="search" 
                     placeholder="Search..."
@@ -44,8 +44,8 @@ export const SearchBar = () => {
                     onChange={ handleInputChange }
                 />
             </form>
-            <form className="bg-houm-salmon border-houm-red/50 border-2 w-[80%] mt-10 rounded-lg flex flex-col p-3" onSubmit={ handleSubmitDate }>
-                <span className="text-center text-houm-logo mb-2">Search with dates</span>
+            <form className="bg-houm-beige border-houm-red/50 border-2 w-[80%] mt-10 rounded-lg flex flex-col p-3" onSubmit={ handleSubmitDate }>
+                <span className="text-center text-houm-black font-bold text-xl mb-2">Search with dates</span>
                 <input 
                     className="rounded-lg p-3 focus:outline-none cursor-text"
                     type="date" id="start" name="trip-start" 
@@ -60,8 +60,8 @@ export const SearchBar = () => {
                     type="submit" value="Send"
                 />
             </form> 
-            <div className="border-houm-red/50 border-2 bg-houm-salmon w-[80%] mt-10 rounded-lg flex flex-col p-2">
-                <span className="text-center text-houm-logo mb-2">Search with categories</span>
+            <div className="border-houm-red/50 border-2 bg-houm-beige w-[80%] mt-10 rounded-lg flex flex-col p-2">
+                <span className="text-center text-houm-black font-bold text-xl mb-2">Search with categories</span>
                 {categories.map((genre)=>(
                         <ButtonLink key={genre.id} url={genre.slug} name={genre.name}/>
                     ))}

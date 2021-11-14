@@ -6,24 +6,28 @@ import { GameDetails } from './GameDetails'
 export const Game = () => {
     const {query:{id}} = useRouter()
     const [game, setGame]=useState(null)
+    const [screenshots, setScreenshots]=useState(null)
 
     useEffect(()=>{
-        const getGame = async() => {
-            const result = await apiCall({url:`${baseUrl}games/${id}?key=${apiKey}`})
-            setGame(result) 
+        const getSources = async() => {
+            const resultGame = await apiCall({url:`${baseUrl}games/${id}?key=${apiKey}`})
+            const resultScreenshots = await apiCall({url:`${baseUrl}games/${id}/screenshots?key=${apiKey}`})
+            setGame(resultGame) 
+            setScreenshots(resultScreenshots) 
         }
         if(id!=undefined){
-            getGame();
+            getSources()
         } 
     },[id])
+
     if(!game){return null}
     return (
         <>
-            {game.name!="UNDEFINED"
-            ?
-            <GameDetails data={game}/>
-            :
-            <span>Cargando...</span>}
+            {
+                game.name!=null ?
+                <GameDetails data={game} screenshots={screenshots}/> :
+                <span>Cargando...</span>
+            }
         </>
     )
 }
