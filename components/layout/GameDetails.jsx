@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Tab } from '@headlessui/react'
-import Image from "next/image"
+import Image from 'next/image'
+import Link from 'next/link';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import 'swiper/css/bundle';
@@ -46,43 +47,43 @@ export const GameDetails = ({ data, screenshots }) => {
                 </Tab> 
                 <hr className="block md:hidden border-[1px] border-houm-salmon w-[90%] mx-auto rounded-full"/>
                 <Tab className=" w-full hover:bg-houm-redHover py-3 md:py-4 transition duration-300">
-                    Genres
+                    Genres and tags
                 </Tab> 
             </Tab.List>
             <Tab.Panels className="rounded-b-2xl p-5 border-[1px] border-houm-red ">
                 <Tab.Panel>
                     <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 justify-items-center">
-                        <div className="col-span-3  ">
+                        <div className="col-span-5 md:col-span-3  ">
                             <p className="text-center text-3xl text-houm-red font-bold mb-4">
                                 Description:
                             </p>
                             <div className="prose-lg" dangerouslySetInnerHTML={{__html: data.description}} ></div>
                         </div>
-                        <div className="flex flex-col col-span-2"> 
+                        <div className="flex flex-col col-span-5 md:col-span-2 "> 
                             <p className="text-center text-3xl text-houm-red font-bold mb-4">
                                 General info
                             </p>
                             <p className="mb-2">
                                 Publisher: 
-                                <span className="text-houm-red">
+                                <span className="text-houm-red mx-1">
                                     { data?.publishers[0]?.name!=null ? data?.publishers[0]?.name : <span>Not found</span> }
                                 </span>
                             </p>
                             <p className="my-2">
                                 Developer: 
-                                <span className="text-houm-red">
+                                <span className="text-houm-red mx-1">
                                     { data?.developers[0]?.name!=null ? data?.developers[0]?.name : <span>Not found</span> }
                                 </span>
                             </p>
                             <p className="my-2">
                                 Classification: 
-                                <span className="text-houm-red">
+                                <span className="text-houm-red mx-1">
                                     { data.esrb_rating?.name ? data.esrb_rating?.name : <span>Not found</span> }
                                 </span>
                             </p>
                             <p className="my-2">
                                 Release date: 
-                                <span className="text-houm-red">
+                                <span className="text-houm-red mx-1">
                                     { data.released }
                                 </span>
                             </p>
@@ -90,7 +91,7 @@ export const GameDetails = ({ data, screenshots }) => {
                                 Web site: 
                                 {
                                     data.website!=null ?
-                                    <a href={data.website} target="_blank" rel="noopener noreferrer" className="mx-2 text-houm-red">Here.</a> :
+                                    <a href={data.website} target="_blank" rel="noopener noreferrer" className="mx-1 text-houm-red">Here.</a> :
                                     <span>Not found</span>
                                 }
                             </p>
@@ -100,23 +101,22 @@ export const GameDetails = ({ data, screenshots }) => {
                 <Tab.Panel>
                     <div className="flex flex-col md:flex-row  justify-evenly">
                         {data.ratings.map((rating)=>(
-                            <div key={rating.id} className="flex flex-col border-2 rounded-xl border-houm-red p-2 my-2 mx-1 md:my-0">
-                                <p className="uppercase text-center">
+                            <div key={rating.id} className="flex flex-col border-2 rounded-xl border-houm-red p-2 my-2 mx-1 md:my-0 text-center hover:bg-houm-salmon transition duration-300">
+                                <p className="uppercase">
                                     <span className="font-bold text-houm-red"> { rating.title } </span>
                                 </p>
-                                <p className=" text-center">
+                                <p>
                                     <span className="font-bold"> { rating.count } </span> Votes in total
                                 </p>
-                                <p className=" text-center">
-                                    <span className="font-bold"> { rating.percent }% </span> 
-                                    of users voted this.
+                                <p>
+                                    <span className="font-bold"> { rating.percent }% </span> of users voted this.
                                 </p>
                             </div>
                         ))}
                     </div>
-                    <div className="my-5 mx-0 md:mx-12 group relative">
+                    <div className="my-5 mx-0 md:mx-12 group relative ">
                         What is this? &#x1F6C8;
-                        <div className=" absolute hidden group-hover:block bg-houm-black text-houm-white p-5 rounded-xl">
+                        <div className=" absolute hidden group-hover:block  bg-houm-black text-houm-white p-5 rounded-xl">
                             <p>
                                 <span className="font-bold text-houm-red"> Exceptional </span> is equal to 4 of 4⭐
                             </p>
@@ -173,7 +173,28 @@ export const GameDetails = ({ data, screenshots }) => {
                     </Swiper>
                 </Tab.Panel>
                 <Tab.Panel>
-                    Genres
+                    <div className="grid grid-cols-2 gap-4 ">
+                        <div className="flex flex-col items-center col-span-2 md:col-span-1">
+                            <p className="text-center text-3xl text-houm-red font-bold mb-4">Genres:</p>
+                            { data.genres.map((genre)=>(
+                                <Link key={genre.id} href={ `/genres/${genre.slug}` }>
+                                    <a className="underline">
+                                        { genre.name }
+                                    </a>
+                                </Link>
+                            )) }
+                        </div>
+                        <div className="flex flex-col items-center col-span-2 md:col-span-1">
+                            <p className="text-center text-3xl text-houm-red font-bold mb-4">Tags:</p>
+                            { data.tags.map((tag)=>(
+                                <Link key={tag.id} href={ `/tags/${tag.slug}` }>
+                                    <a className="underline">
+                                        { tag.name }
+                                    </a>
+                                </Link>
+                            )) }
+                        </div>
+                    </div>
                 </Tab.Panel>
             </Tab.Panels>
         </Tab.Group>

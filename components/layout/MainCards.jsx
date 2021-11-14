@@ -6,6 +6,7 @@ export const MainCards = () => {
     const [games, setGames]=useState([])
     useEffect(()=>{
         const getGames = async() => {
+            //const result = await apiCall({url:`${baseUrl}games?developers=nintendo&page=1&page_size=20&filter=true&comments=true&key=${apiKey}`})
             const result = await apiCall({url:`${baseUrl}games?key=${apiKey}`})
             setGames(result.results)
         }

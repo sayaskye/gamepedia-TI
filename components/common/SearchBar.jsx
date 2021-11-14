@@ -61,7 +61,7 @@ export const SearchBar = () => {
                 />
             </form> 
             <div className="border-houm-red/50 border-2 bg-houm-beige w-[80%] mt-10 rounded-lg flex flex-col p-2">
-                <span className="text-center text-houm-black font-bold text-xl mb-2">Search with categories</span>
+                <span className="text-center text-houm-black font-bold text-xl mb-2">Search by genre</span>
                 {categories.map((genre)=>(
                         <ButtonLink key={genre.id} url={genre.slug} name={genre.name}/>
                     ))}
