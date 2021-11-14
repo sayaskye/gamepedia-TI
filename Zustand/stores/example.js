@@ -20,6 +20,7 @@ const useExampleStore = create(
         isLoading:false,
         errorMessage:"",
         hasError:false,
+        /* commment for testing */
     })
 );
 
