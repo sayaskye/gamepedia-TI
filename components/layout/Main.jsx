@@ -14,6 +14,10 @@ export const Main = ({children, title}) => {
                 </div>
             </div>
             <div className="w-full bg-houm-red py-10 flex flex-col justify-center items-center text-houm-white">
+                <button className="font-bold text-3xl mb-4 border-2 border-houm-redHover rounded-3xl p-2 hover:bg-houm-redHover transition duration-300" 
+                        onClick={()=>{window.scrollTo({top: 0, left: 0, behavior: 'smooth' });}}>
+                    Back to top
+                </button>
                 <p>The data used come from: </p>
                 <a href="https://rawg.io/apidocs" target="_blank" rel="noopener noreferrer">https://rawg.io/apidocs</a>
             </div>
