@@ -7,7 +7,7 @@ export const Header = ({data}) => {
             <div className="flex flex-col justify-center items-center relative px-1">
                 <Image src={ data.background_image } 
                     alt={ data.name } 
-                    width="1920" height="600" 
+                    width="1140" height="450" 
                     placeholder="blur" blurDataURL={ data.background_image } 
                     className="rounded-xl object-cover object-top" 
                     priority

@@ -20,7 +20,7 @@ export const Screenshots = ({data,screenshots}) => {
             {screenshots?.results.map((img)=>(
                 <SwiperSlide key={img.id} className="flex items-center justify-center">
                     <Image src={img.image} alt={data.name}
-                        width="1280" height="720" 
+                        width="1440" height="810" 
                         placeholder="blur" blurDataURL={img.image} 
                         className="rounded-xl object-cover w-full" 
                     />

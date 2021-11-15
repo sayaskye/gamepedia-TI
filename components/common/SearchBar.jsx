@@ -20,7 +20,7 @@ export const SearchBar = () => {
     }),shallow)
 
     useEffect(()=>{
-        getCats().catch(null)
+        if(!cats.length>0){getCats().catch(null)}
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 

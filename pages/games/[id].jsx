@@ -5,9 +5,10 @@ const GamesID = () => {
     return (
         <>
 			<Head>
-				<title>Houm TI Gamepedia</title>
+				<title>Game details | TI</title>
 				<meta name="description" content="" />
-				<link rel="icon" href="/favicon.ico" />
+				<link rel="icon" href="/Logo.svg" />
+				<meta httpEquiv="Content-Language" content="en"/>
 			</Head>
 			<div className="bg-scroll bg-cover bg-bgBubles">
 				<Main title="Details page, Click here to go back">
