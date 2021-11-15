@@ -4,7 +4,7 @@ export const Header = ({data}) => {
     if(!data.description){return null}
     return (
         <>
-            <div className="flex flex-col justify-center items-center relative">
+            <div className="flex flex-col justify-center items-center relative px-1">
                 <Image src={ data.background_image } 
                     alt={ data.name } 
                     width="1920" height="600" 

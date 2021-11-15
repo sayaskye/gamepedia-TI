@@ -8,15 +8,30 @@ const useCardsStore = create(
             try {
                 set({isLoading:true, hasError:false,})
                 const result = await apiCall({url:`${baseUrl}games/lists/popular?key=${apiKey}&page_size=20`})
-                set({cards:result.results})
+                set({cards:result.results, next:result.next})
             } catch (error) {
-                set({cards:[], hasError:true})
+                set({cards:[], next:'', hasError:true})
             } finally {
                 set({isLoading:false})
             }
         },
+        getInfiniteCards : async ()=>{
+            try {
+                set({isLoadingMore:true, hasError:false,})
+                const result = await apiCall({url:get().next})
+                const add = [...get().cards,result.results].flat()
+                set({cards:add, next:result.next, previous:result.previous})
+            } catch (error) {
+                set({cards:[], next:'', previous:'', hasError:true})
+            } finally {
+                set({isLoadingMore:false})
+            }
+        },
         cards:[],
+        next:'',
+        previous:'',
         isLoading:false,
+        isLoadingMore:false,
         hasError:false,
         getSearchCards : async (params)=>{
             if(!params) return;
