@@ -5,12 +5,12 @@ const GamesID = () => {
     return (
         <>
 			<Head>
-				<title>Houm TI Games</title>
+				<title>Houm TI Gamepedia</title>
 				<meta name="description" content="" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<div className="bg-scroll bg-cover bg-bgBubles pb-1">
-				<Main title="Back to Houm! (Home)">
+			<div className="bg-scroll bg-cover bg-bgBubles">
+				<Main title="Details page, Click here to go back">
                     <Game/>
 				</Main>
 			</div>

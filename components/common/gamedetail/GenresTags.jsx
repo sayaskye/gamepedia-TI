@@ -8,7 +8,7 @@ export const GenresTags = ({data}) => {
                 <div className="flex flex-col items-center col-span-2 md:col-span-1">
                     <p className="text-center text-3xl text-houm-red font-bold mb-4">Genres:</p>
                     { data.genres.map((genre)=>(
-                        <Link key={genre.id} href={ `/genres/${genre.slug}` }>
+                        <Link key={genre.id} href={ `/search?genre=${genre.slug}` }>
                             <a className="underline">
                                 { genre.name }
                             </a>
@@ -18,7 +18,7 @@ export const GenresTags = ({data}) => {
                 <div className="flex flex-col items-center col-span-2 md:col-span-1">
                     <p className="text-center text-3xl text-houm-red font-bold mb-4">Tags:</p>
                     { data.tags.map((tag)=>(
-                        <Link key={tag.id} href={ `/tags/${tag.slug}` }>
+                        <Link key={tag.id} href={ `/search?tag=${tag.slug}` }>
                             <a className="underline">
                                 { tag.name }
                             </a>

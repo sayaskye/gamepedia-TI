@@ -6,11 +6,11 @@ export default function Home() {
 	return (
 		<>
 			<Head>
-				<title>Houm TI Games</title>
+				<title>Houm TI Gamepedia</title>
 				<meta name="description" content="" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<div className="bg-scroll bg-cover bg-bgBubles pb-1">
+			<div className="bg-scroll bg-cover bg-bgBubles">
 				<Main title="Welcome to the Houm TI Gamepedia!">
 				<MainCards></MainCards>
 				</Main>

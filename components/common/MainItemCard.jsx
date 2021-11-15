@@ -2,6 +2,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 export const MainItemCard = ({image,title,score,platform,release,url}) => {
+    if(!image)return null
+    if(!title)return null
+    if(!platform)return null
+    if(!release)return null
+    if(!url)return null
     const plats = platform.map((plat)=>(
         <div key={plat.platform.id}>
             {plat.platform.name==="PC"&&<Image src="/icons/pc.svg" width="30" height="30" alt="PC SVG"/>}
