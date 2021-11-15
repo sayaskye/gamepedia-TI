@@ -8,7 +8,7 @@ const useCardsStore = create(
             try {
                 set({isLoading:true, hasError:false,})
                 const result = await apiCall({url:`${baseUrl}games/lists/popular?key=${apiKey}&page_size=20`})
-                set({cards:result.results, next:result.next})
+                set({cards:result.results, next:result?.next, previous:result?.previous})
             } catch (error) {
                 set({cards:[], next:'', hasError:true})
             } finally {
@@ -38,9 +38,9 @@ const useCardsStore = create(
             try {
                 set({isLoading:true, hasError:false,})
                 const result = await apiCall({url:`${baseUrl}search?key=${apiKey}&page_size=20&search=${params}`})
-                set({cards:result.results})
+                set({cards:result.results, next:result?.next, previous:result?.previous})
             } catch (error) {
-                set({cards:[], hasError:true})
+                set({cards:[], next:'', previous:'', hasError:true})
             } finally {
                 set({isLoading:false})
             }
@@ -50,9 +50,9 @@ const useCardsStore = create(
             try {
                 set({isLoading:true, hasError:false,})
                 const result = await apiCall({url:`${baseUrl}games?key=${apiKey}&page_size=20&dates=${params}`})
-                set({cards:result.results})
+                set({cards:result.results, next:result?.next, previous:result?.previous})
             } catch (error) {
-                set({cards:[], hasError:true})
+                set({cards:[], next:'', previous:'', hasError:true})
             } finally {
                 set({isLoading:false})
             }
@@ -62,9 +62,9 @@ const useCardsStore = create(
             try {
                 set({isLoading:true, hasError:false,})
                 const result = await apiCall({url:`${baseUrl}games?key=${apiKey}&page_size=20&genres=${params}`})
-                set({cards:result.results})
+                set({cards:result.results, next:result?.next, previous:result?.previous})
             } catch (error) {
-                set({cards:[], hasError:true})
+                set({cards:[], next:'', previous:'', hasError:true})
             } finally {
                 set({isLoading:false})
             }
@@ -74,9 +74,9 @@ const useCardsStore = create(
             try {
                 set({isLoading:true, hasError:false,})
                 const result = await apiCall({url:`${baseUrl}games?key=${apiKey}&page_size=20&tags=${params}`})
-                set({cards:result.results})
+                set({cards:result.results, next:result?.next, previous:result?.previous})
             } catch (error) {
-                set({cards:[], hasError:true})
+                set({cards:[], next:'', previous:'', hasError:true})
             } finally {
                 set({isLoading:false})
             }
